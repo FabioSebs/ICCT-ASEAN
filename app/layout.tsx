@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import Navbar from "../components/client/Navbar";
 import "./globals.css";
 
@@ -15,9 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-background text-foreground">
+      <body className="bg-background text-foreground overflow-hidden"> {/* Prevent body from scrolling */}
         <Navbar />
-        <main className="pt-16"> {/* Adjust padding to prevent content overlap with the navbar */}
+        <main className="pt-16 h-screen overflow-y-auto"> {/* Allow scrolling only in the main content */}
           {children}
         </main>
       </body>

@@ -74,7 +74,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
     >
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <IconComponent 
-          className={`h-12 w-12 transition-all duration-300 ${isHovered ? 'animate-bounce' : ''}`} 
+          className={`h-12 w-12 transition-all duration-300 ${isHovered ? 'animate-bounce-three-times' : ''}`} 
           style={{ color: event.color }} 
         />
         <div className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: `${event.color}22`, color: event.color }}>

@@ -77,41 +77,41 @@
   }
   body {
     @apply bg-background text-foreground;
+    height: 100%;
+    overflow: hidden; /* Prevent body from scrolling */
+    margin: 0; /* Remove default margin */
+    display: flex;
+    flex-direction: column;
+  }
+  html, #__next {
+    height: 100%; /* Ensure full height */
+  }
+  main {
+    flex: 1 0 auto; /* Main content takes remaining space */
+    overflow-y: auto; /* Allow scrolling within the main area */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
   }
 }
 
-
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* Scrolling and layout improvements */
-html, body, #__next {
-  height: 100%;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-}
-
-body {
-  @apply bg-background text-foreground;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-  overflow-y: auto;
-}
-
-/* Force immediate repaint */
+/* Force immediate repaint to prevent layout shifts */
 body {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000;
+}
+
+@keyframes bounce-three-times {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-10px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Apply the custom animation with a duration and iteration count */
+.animate-bounce-three-times {
+  animation: bounce-three-times 0.6s ease-in-out 3; /* 3 times bounce */
 }
