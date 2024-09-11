@@ -1,4 +1,4 @@
-import EventEntries from "@/components/client/Events";
+import EventEntries from "@/components/client/EventList";
 
 export default function Home() {
   return (

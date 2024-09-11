@@ -1,4 +1,4 @@
-import ProjectEntries from "@/components/client/Projects";
+import ProjectEntries from "@/components/client/ProjectList";
 
 export default function Home() {
   return (
