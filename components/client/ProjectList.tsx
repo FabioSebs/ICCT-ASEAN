@@ -21,6 +21,21 @@ const blogPosts: BlogPost[] = [
     title: "EV Adoption Outline",
     description: "Find the latest news from the official ministry website",
   },
+  {
+    id: "3",
+    title: "EV Adoption Outline",
+    description: "Find the latest news from the official ministry website",
+  },
+  {
+    id: "2",
+    title: "EV Adoption Outline",
+    description: "Find the latest news from the official ministry website",
+  },
+  {
+    id: "2",
+    title: "EV Adoption Outline",
+    description: "Find the latest news from the official ministry website",
+  },
 ]
 
 export default function ProjectEntries() {

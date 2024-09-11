@@ -15,9 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="h-full w-full overflow-hidden">
+      <body className="bg-background text-foreground">
         <Navbar />
-        {children}
+        <main className="pt-16"> {/* Adjust padding to prevent content overlap with the navbar */}
+          {children}
+        </main>
       </body>
     </html>
   );
