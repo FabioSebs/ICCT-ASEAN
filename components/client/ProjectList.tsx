@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Image from "next/image"
-import { Pencil } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Pencil } from "lucide-react";
+import { useState } from "react";
 
 type BlogPost = {
-  id: string
-  title: string
-  description: string
-}
+  id: string;
+  title: string;
+  description: string;
+};
 
 const blogPosts: BlogPost[] = [
   {
@@ -27,36 +27,84 @@ const blogPosts: BlogPost[] = [
     description: "Find the latest news from the official ministry website",
   },
   {
-    id: "2",
+    id: "4",
     title: "EV Adoption Outline",
     description: "Find the latest news from the official ministry website",
   },
   {
-    id: "2",
+    id: "5",
     title: "EV Adoption Outline",
     description: "Find the latest news from the official ministry website",
   },
-]
+];
 
 export default function ProjectEntries() {
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Upcoming Projects</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {blogPosts.map((post) => (
-          <Card key={post.id} className="hover:shadow-lg transition-shadow duration-300">
-            <CardHeader className="flex flex-row items-center space-x-4 pb-2">
-              <Pencil />
-              <CardTitle className="text-xl">{post.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-sm text-muted-foreground">
-                {post.description}
-              </CardDescription>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <main className="flex-grow overflow-y-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+            Upcoming <span className="text-primary">Projects</span>
+          </h1>
+          <p className="text-md sm:text-lg text-center text-muted-foreground mb-8">
+            Explore the latest projects in our initiative
+          </p>
+
+          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {blogPosts.map((post) => (
+              <ProjectCard key={post.id} post={post} />
+            ))}
+          </div>
+        </div>
+      </main>
     </div>
-  )
+  );
 }
+
+const ProjectCard: React.FC<{ post: BlogPost }> = ({ post }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <Card
+      className="hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2"
+      style={{
+        background: `linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%)`,
+        borderTop: `4px solid hsl(142 76% 36%)`,
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <Pencil
+          className={`h-12 w-12 transition-transform duration-300 ${
+            isHovered ? "animate-bounce-three-times" : ""
+          }`}
+        />
+        <div
+          className="text-xs font-semibold px-3 py-1 rounded-full"
+          style={{
+            background: `rgba(142, 76, 36, 0.1)`,
+            color: `hsl(142 76% 36%)`,
+          }}
+        >
+          New
+        </div>
+      </CardHeader>
+      <CardContent>
+        <CardTitle className="text-2xl font-bold mb-2">{post.title}</CardTitle>
+        <CardDescription className="mb-4 line-clamp-2 text-sm text-muted-foreground">
+          {post.description}
+        </CardDescription>
+        <button
+          className="w-full text-white py-2 px-4 rounded-lg font-semibold transition-all duration-300 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
+          style={{
+            background: `hsl(142 76% 36%)`,
+            boxShadow: `0 4px 14px 0 rgba(142, 76, 36, 0.35)`,
+          }}
+        >
+          Learn More
+        </button>
+      </CardContent>
+    </Card>
+  );
+};
