@@ -1,4 +1,3 @@
-import Image from "next/image";
 import RegisterForm from "../components/client/RegisterForm";
 
 export default function Home() {

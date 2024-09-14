@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Head from 'next/head';
-import { FaCalendarAlt, FaMapMarkerAlt, FaClock, FaArrowRight } from 'react-icons/fa';
 import { FaLaptopCode } from 'react-icons/fa';
 import { MdBrush } from 'react-icons/md';
 import { IoMusicalNotesSharp } from 'react-icons/io5';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { FaClock, FaMapMarkerAlt,FaArrowRight } from 'react-icons/fa';
 
 interface Event {
   id: number;
