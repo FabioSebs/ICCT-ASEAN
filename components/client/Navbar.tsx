@@ -57,7 +57,6 @@ export default function Navbar() {
     }
   }
 
-  // Prevent hydration mismatch
   if (!mounted) {
     return null;
   }

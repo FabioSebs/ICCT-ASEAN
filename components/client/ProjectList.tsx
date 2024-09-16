@@ -4,41 +4,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 
-type BlogPost = {
+type Project = {
   id: string;
   title: string;
   description: string;
+  start_date: string;
+  due_date: string;
+  status: string;
+  priority: string;
+  created_at: string;
+  updated_at: string;
+  completed_at: string | null;
 };
 
-const blogPosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "Heavy Duty Vehicles",
-    description: "Find the latest EV Cars in Oto's registry of ev cars",
-  },
-  {
-    id: "2",
-    title: "EV Adoption Outline",
-    description: "Find the latest news from the official ministry website",
-  },
-  {
-    id: "3",
-    title: "EV Adoption Outline",
-    description: "Find the latest news from the official ministry website",
-  },
-  {
-    id: "4",
-    title: "EV Adoption Outline",
-    description: "Find the latest news from the official ministry website",
-  },
-  {
-    id: "5",
-    title: "EV Adoption Outline",
-    description: "Find the latest news from the official ministry website",
-  },
-];
+interface ProjectEntriesProps {
+  projects: Project[];
+}
 
-export default function ProjectEntries() {
+export default function ProjectEntries({ projects }: ProjectEntriesProps) {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <main className="flex-grow overflow-y-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -51,7 +34,7 @@ export default function ProjectEntries() {
           </p>
 
           <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {blogPosts.map((post) => (
+            {projects.map((post) => (
               <ProjectCard key={post.id} post={post} />
             ))}
           </div>
@@ -61,7 +44,7 @@ export default function ProjectEntries() {
   );
 }
 
-const ProjectCard: React.FC<{ post: BlogPost }> = ({ post }) => {
+const ProjectCard: React.FC<{ post: Project }> = ({ post }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
