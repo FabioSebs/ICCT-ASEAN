@@ -48,9 +48,9 @@ export default function RSSEntries({ rss }: RSSEntriesProps) {
 
 function getImage(id : string) {
   switch (id) {
-    case 'cad9f765-b068-4424-8b88-a421859c5dcb':
+    case 'ed9bbec6-99c8-42b8-b6ba-9da13eb6243e':
       return '/moe.png'
-    case '7338ee7c-3c4c-4dc3-8cf9-54a3ff5f8ff7':
+    case 'f3341c27-49e8-4fe2-8f84-305ad55527ed':
       return '/mot.ico'
   }
 }
