@@ -46,11 +46,17 @@ export default function RSSEntries({ rss }: RSSEntriesProps) {
   )
 }
 
-function getImage(id : string) {
+function getImage(id: string) {
   switch (id) {
     case 'ed9bbec6-99c8-42b8-b6ba-9da13eb6243e':
       return '/moe.png'
     case 'f3341c27-49e8-4fe2-8f84-305ad55527ed':
       return '/mot.ico'
+    case 'a69e5528-7df7-4405-9f3a-13064f806013':
+      return '/antara.png'
+    case '198d5144-5fad-4216-9ec6-ad9f86c01cca':
+      return '/thnews.png'
+    case '0dd87552-9582-4867-83ed-039e755d2e2f':
+      return '/vnews.jpeg'
   }
 }

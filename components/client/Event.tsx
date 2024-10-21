@@ -3,11 +3,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
+interface User {
+  id : string;
+  username: string;
+  email : string;
+}
+
 interface Comment {
   id: string
-  author: string
-  avatarUrl: string
-  content: string
+  uid : string
+  eid : string
+  message: string
+  user : User;
 }
 
 interface EventCardProps {
@@ -17,25 +24,7 @@ interface EventCardProps {
   comments: Comment[]
 }
 
-export default function Event({ eventName, eventTime, eventDay, comments }: EventCardProps = {
-  eventName: "Team Building Workshop",
-  eventTime: "14:00",
-  eventDay: "2023-06-15",
-  comments: [
-    {
-      id: "1",
-      author: "Alice",
-      avatarUrl: "/placeholder.svg?height=32&width=32",
-      content: "Looking forward to this!"
-    },
-    {
-      id: "2",
-      author: "Bob",
-      avatarUrl: "/placeholder.svg?height=32&width=32",
-      content: "Great initiative. I have some ideas to share."
-    }
-  ]
-}) {
+export default function Event({ eventName, eventTime, eventDay, comments }: EventCardProps) {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
@@ -59,13 +48,9 @@ export default function Event({ eventName, eventTime, eventDay, comments }: Even
             <ScrollArea className="h-40 rounded-md border p-4">
               {comments.map((comment) => (
                 <div key={comment.id} className="flex items-start space-x-4 mb-4">
-                  <Avatar>
-                    <AvatarImage src={comment.avatarUrl} alt={comment.author} />
-                    <AvatarFallback>{comment.author[0]}</AvatarFallback>
-                  </Avatar>
                   <div>
-                    <p className="font-semibold">{comment.author}</p>
-                    <p className="text-sm text-muted-foreground">{comment.content}</p>
+                    <p className="font-semibold">{comment.user.username}</p>
+                    <p className="text-sm text-muted-foreground">{comment.message}</p>
                   </div>
                 </div>
               ))}
