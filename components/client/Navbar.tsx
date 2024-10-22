@@ -76,6 +76,7 @@ export default function Navbar() {
               <Link href="/rss" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary hover:text-primary-foreground">RSS</Link>
               <Link href="/events" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary hover:text-primary-foreground">Events</Link>
               <Link href="/datasets" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary hover:text-primary-foreground">Datasets</Link>
+              <Link href="/requests" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary hover:text-primary-foreground">Requests</Link>
               <Button variant="ghost" size="icon" onClick={cycleTheme} aria-label="Toggle theme">
                 {getThemeIcon()}
               </Button>
@@ -99,6 +100,7 @@ export default function Navbar() {
             <Link href="/rss" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary hover:text-primary-foreground">RSS</Link>
             <Link href="/events" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary hover:text-primary-foreground">Events</Link>
             <Link href="/datasets" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary hover:text-primary-foreground">Datasets</Link>
+            <Link href="/requests" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary hover:text-primary-foreground">Requests</Link>
           </div>
         </div>
       )}

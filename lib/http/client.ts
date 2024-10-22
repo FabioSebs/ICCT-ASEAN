@@ -84,3 +84,18 @@ export const commentService = {
         return apiClient.get('/comments', setAuthHeader(token));
     },
 };
+
+export const requestService = {
+    postRequest: (data : any, token : string): Promise<AxiosResponse> => {
+        return apiClient.post('/requests', data, setAuthHeader(token));
+    },
+    getRequest: (token : string): Promise<AxiosResponse> => {
+        return apiClient.get('/requests?limit=20&page=1', setAuthHeader(token));
+    },
+}
+
+export const photoService = {
+    getPhotos: (token : string, eid : string): Promise<AxiosResponse> => {
+        return apiClient.get(`/photos/${eid}?limit=20&page=1`, setAuthHeader(token));
+    },
+}
