@@ -2,7 +2,7 @@
 
 import CreateRequestForm from "@/components/client/CreateRequestForm"
 
-export default async function Home() {
+export default function Home() {
 
     const getCookie = (name: string) => {
         const value = `; ${document.cookie}`;
