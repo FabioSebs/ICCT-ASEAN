@@ -1,16 +1,21 @@
-"use server"
+"use client"
 
-import { cookies } from 'next/headers'
 import CreateRequestForm from "@/components/client/CreateRequestForm"
 
 export default async function Home() {
-    const cookieStore = cookies()
-    const token = cookieStore.get('token')
 
+    const getCookie = (name: string) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop()?.split(";").shift();
+        return null;
+    };
+
+    const token = getCookie("token");
 
     return (
         <div className='w-full flex flex-col justify-center items-center h-full'>
-            <CreateRequestForm token={token?.value || ""} />
+            <CreateRequestForm token={token || ""} />
         </div>
     )
 

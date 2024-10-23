@@ -29,7 +29,7 @@ export default function SearchComponent<T extends { [key: string]: any }>({
         if (!searchTerm) {
             setData(initialData)
         }
-    }, [searchTerm])
+    }, [searchTerm, data, initialData, setData])
 
     return (
         <div className="relative flex items-center gap-4">

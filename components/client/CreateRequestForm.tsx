@@ -30,7 +30,7 @@ export default function CreateRequestForm({ token }: Props) {
         e.preventDefault()
         setIsSubmitting(true)
         try {
-            const res = await requestService.postRequest({
+            await requestService.postRequest({
                 name,
                 description,
                 type

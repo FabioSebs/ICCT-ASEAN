@@ -1,26 +1,40 @@
-"use server"
+"use client"
 
 import ProjectEntries from "@/components/client/ProjectList";
 import { projectService } from "@/lib/http/client";
-import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
+import { useState, useEffect } from "react";
+import Unauthenticated from "@/components/client/Unauthenticated";
 
-export default async function Home() {
-  const cookieStore = cookies()
-  const token = cookieStore.get('token')
-
-  try { 
-    const { data } = await projectService.getAllProjects(token?.value || '')
-    const projects = data.data.data
-    console.log(projects)
+export default function Home() {
+  const [projects, setProjects] = useState([]);
+  const [error, setError] = useState(false)
   
-    return (
-      <div className="w-full h-screen relative flex justify-center items-center">
-        <ProjectEntries projects={projects}/> 
-      </div>
-    );
-  } catch (error) {
-    console.log(error)
-    redirect('/')
-  }
+  const getCookie = (name: string) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(";").shift();
+    return null;
+  };
+
+  useEffect(()=>{
+    async function getProjects() {
+      try { 
+        const token = getCookie("token");
+        const { data } = await projectService.getAllProjects(token || '')
+        setProjects(data.data.data)
+      } catch (error) {
+        console.log(error)
+        setError(true)
+      }
+    }
+    getProjects()
+  }, [])
+
+  
+  return (
+    <div className="w-full h-screen relative flex justify-center items-center">
+        {error ? <Unauthenticated/>:<ProjectEntries projects={projects}/> } 
+    </div>
+  );
+ 
 }

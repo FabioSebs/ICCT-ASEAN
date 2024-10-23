@@ -1,11 +1,9 @@
 "use client"
 
-import { useRouter } from 'next/navigation'
 import React from 'react'
 import RSSComponent from '@/components/client/RSS'
 
 export default function RSS({ params }: { params: { id: string } }) {
-  const router = useRouter()
   
   const getCookie = (name: string) => {
     const value = `; ${document.cookie}`
