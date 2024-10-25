@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'https://icct-portal.fabrzy.dev/api/v1',
+    baseURL: 'https://icct-portal.fabrzy.dev/api',
     headers: {
         'Content-Type': 'application/json',
     },
