@@ -24,7 +24,7 @@ jobs:
           ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
           ssh root@${{ secrets.SERVER_IP }} << 'EOF'
             set -e
-            cd icct-frontend
+            cd icct-website/ICCT-ASEAN
             git pull origin integrations/api
             docker stop icct-frontend && docker rm icct-frontend
             docker build -t icct-frontend . --no-cache
