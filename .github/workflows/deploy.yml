@@ -1,0 +1,32 @@
+name: Deploy
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE }}
+
+      - name: SSH and Rebuild
+        run : |
+          sudo apt install sshpass
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+          ssh root@${{ secrets.SERVER_IP }} << 'EOF'
+            set -e
+            cd icct-frontend
+            git pull origin integrations/api
+            docker stop icct-frontend && docker rm icct-frontend
+            docker build -t icct-frontend . --no-cache
+            docker run -d --name icct-frontend -p 3000:3000 --restart on-failure icct-frontend
+          EOF
